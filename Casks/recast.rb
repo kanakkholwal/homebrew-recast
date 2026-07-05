@@ -1,7 +1,7 @@
 # Homebrew Cask formula for Recast.
 #
 # This file is the template; `scripts/release/update-homebrew-cask.sh`
-# substitutes 0.2.9 / c32deed9d36d4a71bf7aa7621d60d7946f9c04c6c76369612c6f0aa039876d5d / 1c990052592c5d02ede20900c21eb72ade637220a9717b0365f182ca47618ed6 on each release
+# substitutes 0.3.1 / c45006773015bc386051ebcf774c9aea9f3692eada6e94a05a19054facd99d5b / 4067e3683e6e3741d624cad9f900e42387e607fe6289c3f767f4e2bf8cf690e2 on each release
 # and pushes the rendered file to `kanakkholwal/homebrew-recast` as
 # `Casks/recast.rb`. End users then install with
 #
@@ -17,11 +17,11 @@
 # workaround documented for direct-DMG downloads.
 
 cask "recast" do
-  version "0.2.9"
+  version "0.3.1"
 
   # Apple Silicon (M-series) Mac
   on_arm do
-    sha256 "c32deed9d36d4a71bf7aa7621d60d7946f9c04c6c76369612c6f0aa039876d5d"
+    sha256 "c45006773015bc386051ebcf774c9aea9f3692eada6e94a05a19054facd99d5b"
 
     url "https://github.com/kanakkholwal/recast/releases/download/v#{version}/recast_#{version}_aarch64.dmg",
         verified: "github.com/kanakkholwal/recast/"
@@ -29,7 +29,7 @@ cask "recast" do
 
   # Intel Mac
   on_intel do
-    sha256 "1c990052592c5d02ede20900c21eb72ade637220a9717b0365f182ca47618ed6"
+    sha256 "4067e3683e6e3741d624cad9f900e42387e607fe6289c3f767f4e2bf8cf690e2"
 
     url "https://github.com/kanakkholwal/recast/releases/download/v#{version}/recast_#{version}_x64.dmg",
         verified: "github.com/kanakkholwal/recast/"
