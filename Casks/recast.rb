@@ -1,7 +1,7 @@
 # Homebrew Cask formula for Recast.
 #
 # This file is the template; `scripts/release/update-homebrew-cask.sh`
-# substitutes 0.3.1 / 3d725d25f29ebf8b57e7c5c5dc2e9a17ccd8f46b15cf75c0824f4a48ba4cfb0c / 67f95116d09d310fb681f9fce2aa8d6ddf8eec6b415c49b39a3923b5dd125fb4 on each release
+# substitutes 0.4.0 / d7d533a3c71d69aa04f3985dff2ddaff3c0d6f17290590e96ea2b5642582a334 / bc08a0442fe5724b88c756b1b3e23299c0418bc9fd82c05fa222b7fa473cf111 on each release
 # and pushes the rendered file to `kanakkholwal/homebrew-recast` as
 # `Casks/recast.rb`. End users then install with
 #
@@ -17,11 +17,11 @@
 # workaround documented for direct-DMG downloads.
 
 cask "recast" do
-  version "0.3.1"
+  version "0.4.0"
 
   # Apple Silicon (M-series) Mac
   on_arm do
-    sha256 "3d725d25f29ebf8b57e7c5c5dc2e9a17ccd8f46b15cf75c0824f4a48ba4cfb0c"
+    sha256 "d7d533a3c71d69aa04f3985dff2ddaff3c0d6f17290590e96ea2b5642582a334"
 
     url "https://github.com/kanakkholwal/recast/releases/download/v#{version}/recast_#{version}_aarch64.dmg",
         verified: "github.com/kanakkholwal/recast/"
@@ -29,7 +29,7 @@ cask "recast" do
 
   # Intel Mac
   on_intel do
-    sha256 "67f95116d09d310fb681f9fce2aa8d6ddf8eec6b415c49b39a3923b5dd125fb4"
+    sha256 "bc08a0442fe5724b88c756b1b3e23299c0418bc9fd82c05fa222b7fa473cf111"
 
     url "https://github.com/kanakkholwal/recast/releases/download/v#{version}/recast_#{version}_x64.dmg",
         verified: "github.com/kanakkholwal/recast/"
@@ -53,15 +53,20 @@ cask "recast" do
 
   app "Recast.app"
 
+  # Symlink the CLI into Homebrew's bin so `recast <verb>` works in any
+  # terminal (Homebrew puts its bin on PATH). The GUI still launches from the
+  # .app; this is the same binary, invoked with a subcommand.
+  binary "#{appdir}/Recast.app/Contents/MacOS/recast"
+
   # On `brew uninstall --cask --zap recast`, remove the user-data
   # directories Recast writes outside the app bundle. Bundle identifier
   # mirrors the macOS app's CFBundleIdentifier — verify against
   # `apps/desktop/src-tauri/tauri.conf.json#identifier` if it changes.
   zap trash: [
-    "~/Library/Application Support/com.nexonauts.recast",
-    "~/Library/Caches/com.nexonauts.recast",
-    "~/Library/Preferences/com.nexonauts.recast.plist",
-    "~/Library/Saved Application State/com.nexonauts.recast.savedState",
-    "~/Library/WebKit/com.nexonauts.recast",
+    "~/Library/Application Support/com.kanakkholwal.recast",
+    "~/Library/Caches/com.kanakkholwal.recast",
+    "~/Library/Preferences/com.kanakkholwal.recast.plist",
+    "~/Library/Saved Application State/com.kanakkholwal.recast.savedState",
+    "~/Library/WebKit/com.kanakkholwal.recast",
   ]
 end
